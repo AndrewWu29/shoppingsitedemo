@@ -1,4 +1,5 @@
 import time
+import uuid
 
 from behave import *
 from selenium import webdriver
@@ -19,10 +20,14 @@ def addFourDiffItemsToWishList(context):
    time.sleep(2)
    context.driver.find_element_by_xpath("//*[@id='site-content']/div/div/article/ul/li[4]/div/div[2]/div/div/a").click()
    time.sleep(2)
+   context.driver.save_screenshot('Step1.png')
+   time.sleep(2)
 
 @when('I view my wishlist table')
 def viewWishlist(context):
    context.driver.find_element_by_xpath("//*[@id='blog']/div[3]/div[1]/div/div/div[3]/div[3]/a").click()
+   time.sleep(2)
+   context.driver.save_screenshot('Step2.png')
    time.sleep(2)
 
 @then('I find total selected items in my Wishlist')
@@ -32,6 +37,8 @@ def checkWishlistItems(context):
     context.driver.find_elements_by_partial_link_text("Black pants")
     context.driver.find_elements_by_partial_link_text("Bikini")
     time.sleep(2)
+    context.driver.save_screenshot('Step3.png')
+    time.sleep(2)
 
 @when('I search for lowest price product')
 def searchForLowestPriceProduct(context):
@@ -39,10 +46,14 @@ def searchForLowestPriceProduct(context):
     time.sleep(2)
     context.driver.find_element_by_xpath("//*[@id='site-content']/div/div/article/ul/li[1]/a[1]/span[2]/ins/span/bdi/span").click()
     time.sleep(2)
+    context.driver.save_screenshot('Step4.png')
+    time.sleep(2)
 
 @when('I am able to add the lowest price item to my cart')
 def addTheLowestPriceItemToMyCart(context):
     context.driver.find_element_by_xpath("//*[@id='product-22']/div[2]/form/button[3]").click()
+    time.sleep(2)
+    context.driver.save_screenshot('Step5.png')
     time.sleep(2)
 
 
@@ -54,6 +65,8 @@ def verifyItemInMyCart(context):
     itemname = context.driver.find_element_by_xpath("//*[@id='site-content']/div/div/article/div/div/div[1]/div/form/table/tbody/tr[1]/td[3]/a")
     print(itemname.text)
     assert verifyitemname == itemname.text
+    context.driver.save_screenshot('Step6.png')
+    time.sleep(2)
     context.driver.close()
 
 
